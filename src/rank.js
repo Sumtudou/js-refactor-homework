@@ -5,11 +5,11 @@ function voyageRisk(voyage) {
     let result = 1;
     result += voyage.length > 4 ? 2 : 0;
     result += voyage.length > 8 ? voyage.length - 8 : 0;
-    return result += voyageZone.includes(voyage.zone)? 4 : 0;
+    return result + ( voyageZone.includes(voyage.zone)? 4 : 0);
 }
 
 function hasChina(history) {
-    return history.some(v => 'china' === v.zone);
+    return history.some(v => v.zone === 'china');
 }
 
 function captainHistoryRisk(voyage, history) {
