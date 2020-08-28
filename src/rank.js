@@ -1,11 +1,11 @@
+const voyageZone = [
+    'china','east-indies'
+];
 function voyageRisk(voyage) {
     let result = 1;
     result += voyage.length > 4 ? 2 : 0;
     result += voyage.length > 8 ? voyage.length - 8 : 0;
-    if ('china' === voyage.zone || voyage.zone === 'east-indies') {
-        result += 4;
-    }
-    return result;
+    return result += voyageZone.includes(voyage.zone)? 4 : 0;
 }
 
 function hasChina(history) {
