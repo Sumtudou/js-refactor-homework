@@ -1,32 +1,92 @@
 const rankTest = require('ava');
-const {rating, voyageProfitFactor, captainHistoryRisk, voyageRisk} = require('../src/rank')
+const {rating} = require('../src/rank')
 
-const voyage = {
-    zone: 'west-indies',
-    length: 10,
-};
-const history = [
-    {
-        zone: 'east-indies',
-        profit: 5,
-    }, {
-        zone: 'west-indies',
-        profit: 15,
-    }, {
+rankTest('rating test return A', t => {
+    const voyage = {
         zone: 'china',
-        profit: -2,
-    },
-    {
-        zone: 'west-africa',
-        profit: 7,
-    },
-];
-rankTest('voyageRisk test voyage length > 8', t => {
+        length: 13,
+    };
+    const history = [
+        {
+            zone: 'east-indies',
+            profit: 5,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'east-indies',
+            profit: 2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'china',
+            profit: 7,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        }
+    ];
+
+    const result = rating(voyage, history)
+
+    t.is(result, 'A');
+})
+
+rankTest('rating test return B', t => {
     const voyage = {
         zone: 'west-indies',
-        length: 10,
+        length: 15,
     };
-    const result = voyageRisk(voyage)
+    const history = [
+        {
+            zone: 'east-indies',
+            profit: 5,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        },
+        {
+            zone: 'east-indies',
+            profit: 2,
+        },
+        {
+            zone: 'west-africa',
+            profit: 7,
+        },
+        {
+            zone: 'west-indies',
+            profit: 15,
+        }
+    ];
 
-    t.is(result, 5);
+    const result = rating(voyage, history)
+
+    t.is(result, 'B');
 })
