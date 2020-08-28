@@ -1,5 +1,5 @@
 const rankTest = require('ava');
-const {voyageRisk} = require('../src/rank')
+const {voyageRisk} = require('../../src/rank')
 
 rankTest('voyageRisk test voyage len exceed 8', t => {
     //given
